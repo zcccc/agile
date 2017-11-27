@@ -1,0 +1,88 @@
+//CourseSession
+
+package StudentInfo;
+
+import java.util.*;
+
+public class CourseSession {
+	private String department;
+	private String number;
+	//创建储存对象
+	private ArrayList<Student> students = new ArrayList<Student>();
+	private Date startDate;
+	
+	//课程系统
+	CourseSession(String department,String number){
+		this.department = department;
+		this.number = number;
+	}
+	
+	//coueseSession的多台，接收课程开始日期
+	CourseSession(String department,String number,Date startDate){
+		this.department = department;
+		this.number = number;
+		this.startDate = startDate;
+	}
+	
+	//返回课程部门
+	String getDepartment() {
+		return department;
+	}
+	
+	//返回课程编号
+	String getNumber() {
+		return number;
+	}
+	
+	//得到学生的数量
+	int getNumberOfStudents() {
+		return students.size();
+	}
+	
+	//录取学生
+	void enroll(Student student) {
+		students.add(student);
+	}
+	
+//	//得到所有学生列表
+//	ArrayList<Student> getAllStudents(){
+//		return students;
+//	}
+	
+	//
+	Student get(int index) {
+		return students.get(index);
+	}
+	
+	//得到结束日期
+	Date getEndDate() {
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(startDate);
+		int numberOfDays = 16 * 7 - 3;
+		calendar.add(calendar.DAY_OF_YEAR, numberOfDays);
+		Date endDate = calendar.getTime();
+		return endDate;
+	}
+	
+	Date getStartDate() {
+		return startDate;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
