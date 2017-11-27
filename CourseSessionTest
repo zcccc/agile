@@ -1,0 +1,65 @@
+//test
+package StudentInfo;
+
+import junit.framework.*;
+import java.util.*;
+import java.util.Date;
+
+public class CourseSessionTest extends TestCase{
+	
+	private CourseSession session;
+	private Date startDate;
+	
+	//JUnit所提供的方法，每次测试前都会SetUp对象
+	public void setUp() {
+		int year = 103;
+		int month = 0;
+		int date = 6;
+		startDate = new Date(year, month, date);
+		session = new CourseSession("ENGL", "101");
+	}
+	
+	public void testCreate() {
+		assertEquals("ENGL", session.getDepartment());
+		assertEquals("101", session.getNumber());
+		assertEquals(0, session.getNumberOfStudents());
+		assertEquals(startDate, session.getStartDate());
+	}
+
+	public void testEnollStudents() {
+		Student student1 = new Student("Cain DiVoe");
+		session.enroll(student1);
+		ArrayList<Student> allStudents = session.getAllStudents();
+		assertEquals(student1, allStudents.get(0));
+		
+		Student student2 = new Student("Coralee Devaughn");
+		session.enroll(student2);
+		assertEquals(2, session.getNumberOfStudents());
+		assertEquals(student1, allStudents.get(0));
+		assertEquals(student2, allStudents.get(1));
+	}
+	
+	public void testCourseDates() {
+		CourseSession session = new CourseSession("ABCD","200",startDate);
+		int year = 103;
+		int month = 3;
+		int date = 25;
+		Date sixTeenWeeksOut = new Date(year,month,date);
+		assertEquals(sixTeenWeeksOut, session.getEndDate());
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
